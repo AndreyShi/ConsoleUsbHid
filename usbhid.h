@@ -8,7 +8,8 @@
 #include <string>
 #include <string.h>
 
-#define STM32_USBVID L"vid_0483"
+#define UNKNOWN_DEVICE    L"vid_0483"
+#define STM32_USBVID      L"vid_03eb"
 
 extern GUID Guid;
 extern HANDLE HidDeviceObject;

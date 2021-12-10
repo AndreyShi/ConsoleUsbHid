@@ -35,6 +35,7 @@ DWORD WINAPI WriteReport(void*) {
 						&NumberOfBytesWriten,(LPOVERLAPPED)&HIDOverlapped);
 				}
 				WRITE_ROPRT = FALSE;
+				memset(&OutputReport, 0, 256);
 			}
 		}
 		Sleep(25);

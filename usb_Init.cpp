@@ -82,14 +82,14 @@ bool get_path()
 
 			if (SetupDiGetDeviceInterfaceDetail(info, &ifData, detail, needed, NULL, &did))
 			{
-				if (wcsstr(detail->DevicePath, STM32_USBVID) || wcsstr(detail->DevicePath, L"vid_03eb"))
+				if (wcsstr(detail->DevicePath, UNKNOWN_DEVICE) || wcsstr(detail->DevicePath, STM32_USBVID))
 				{
 					memcpy(DevicePath, detail->DevicePath, MAX_PATH * 2);
 					result = 1;
 				}
 			}
 
-			if (wcsstr(detail->DevicePath, STM32_USBVID) != NULL)
+			if (wcsstr(detail->DevicePath, UNKNOWN_DEVICE) != NULL)
 			{
 				if (SetupDiGetDeviceRegistryProperty(info, &did, SPDRP_DEVICEDESC, NULL, (PBYTE)Product, 253, NULL))
 					Prod = Product;
