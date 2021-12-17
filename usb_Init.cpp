@@ -19,10 +19,12 @@ BYTE InputReport[256];
 BYTE OutputReport[256];
 BYTE ProductStr[256];
 int Use_Setxxx = 0;
+/*
+* const wchar_t* device - юникод строка с устройством (PID or VID)
+*/
+void init(const wchar_t* device) {
 
-void init() {
-
-	if (get_path() == 0) {
+	if (get_path(device) == 0) {
 		std::wcout << "device not found: " << DevicePath << '\n';
 		return;
 	}
@@ -55,8 +57,10 @@ void init() {
 	std::wcout << "ProductString: " << (wchar_t*)ProductStr << '\n';
 	CreateReadWriteThread();
 }
-
-bool get_path()
+/*
+* const wchar_t* device - юникод строка с устройством (PID or VID)
+*/
+bool get_path(const wchar_t* device)
 {
 	char	Product[253];
 	std::string	Prod;
@@ -82,7 +86,7 @@ bool get_path()
 
 			if (SetupDiGetDeviceInterfaceDetail(info, &ifData, detail, needed, NULL, &did))
 			{
-				if (wcsstr(detail->DevicePath, UNKNOWN_DEVICE) || wcsstr(detail->DevicePath, STM32_USBVID))
+				if (wcsstr(detail->DevicePath, UNKNOWN_DEVICE) || wcsstr(detail->DevicePath, device))
 				{
 					memcpy(DevicePath, detail->DevicePath, MAX_PATH * 2);
 					result = 1;

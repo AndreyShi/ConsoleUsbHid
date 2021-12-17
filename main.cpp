@@ -7,14 +7,14 @@
 int main() {	
     int index;
     int data;
-    init();
+    init(STM32_USBVID);
 n:
     std::cout << "index:";
     std::cin >> index;
     if (index == 0) {
         std::cout << "reading input buffer...\n";
         char byte[4] = {'0','0','0','\0'};
-        for (int i = 0; i < 255; i++) {
+        for (int i = 0; i < 20; i++) {
             sprintf_s(byte, "%x", InputReport[i]);
             std::cout << byte << '_';
         }

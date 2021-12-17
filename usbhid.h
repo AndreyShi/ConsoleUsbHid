@@ -31,9 +31,9 @@ extern int Use_Setxxx;
 
 
 /*инициализация USB*/
-void init();
+void init(const wchar_t* device);
 /*получение пути устройства USB*/
-bool get_path();
+bool get_path(const wchar_t *device);
 /*создание потоков для чтения/записи*/
 void CreateReadWriteThread();
 
